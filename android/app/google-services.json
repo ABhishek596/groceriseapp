@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "816205990367",
+    "project_id": "rnnotification-687ee",
+    "storage_bucket": "rnnotification-687ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:816205990367:android:14990f67ae461267c1dc6a",
+        "android_client_info": {
+          "package_name": "com.nfresh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "816205990367-uk6p75gc5e715pitapkm7lriqimr01ft.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nfresh",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "816205990367-okki9scgjbmjmmi2ateu3aq41v631cos.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLSYQbt5MJ0MyJ_npZlsbMVjC3VCFO27Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "816205990367-okki9scgjbmjmmi2ateu3aq41v631cos.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
