@@ -1,25 +1,35 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, FlatList} from 'react-native';
+import {View, Text, StyleSheet, Image, FlatList,TouchableOpacity} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {JsonData} from '../../components/data/JsonData';
+import { useNavigation } from '@react-navigation/native'; // Import the useNavigation hook
 
-const Categorydata = () => {
-  const renderItem = ({item}) => {
+
+const CategoryData = () => {
+  const navigation = useNavigation(); // Initialize the navigation object
+
+  const handleCategoryPress = (categoryData) => {
+    // Handle category press
+    // Navigate to the category details screen passing the categoryId
+    navigation.navigate('Produts', { categoryData });
+  };
+
+  const renderItem = ({ item }) => {
     return (
-      <View style={styles.box}>
+      <TouchableOpacity style={styles.box} onPress={() => handleCategoryPress(item)}>
         <View style={styles.inner}>
           {item.image && (
             <Image
-              resizeMode="contain"
+              resizeMode='contain'
               style={styles.image}
               source={item.image}
             />
           )}
         </View>
-      </View>
+      </TouchableOpacity>
     );
   };
 
@@ -29,12 +39,12 @@ const Categorydata = () => {
         <Text style={styles.itemview}>Category</Text>
         <Text style={styles.viewAll}>View All</Text>
       </View>
-      <FlatList
+      <FlatList 
         horizontal
         showsHorizontalScrollIndicator={false}
         data={JsonData.categoriesList}
         renderItem={renderItem}
-        keyExtractor={item => item.id}
+        keyExtractor={(item) => item.id}
         contentContainerStyle={styles.boxContainer}
       />
     </View>
@@ -88,4 +98,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Categorydata;
+export default CategoryData;

@@ -21,7 +21,9 @@ import NotificationStack from './NotificationStack';
 
 const BototmTab = createBottomTabNavigator();
 
-export default function TabRoutes({props, navigation}) {
+export default function TabRoutes({props, navigation, route}) {
+
+  const { onSignOut } = route.params || {};
   // const handleTabPress = defaultHandler => {
   //   // do something when the tab is pressed
   //   defaultHandler();
@@ -39,28 +41,31 @@ export default function TabRoutes({props, navigation}) {
         </>
       )}
       screenOptions={{
+        tabBarHideOnKeyboard: true,
         headerShown: false,
         tabBarShowLabel: false,
         tabBarInactiveTintColor: colors.black,
         tabBarActiveTintColor: colors.themePrimary,
         tabBarStyle: {
           position: 'absolute',
-          bottom: hp('1'),
-          left: wp('2'),
-          right: wp('2'),
-          borderTopLeftRadius: wp('8'),
-          borderTopRightRadius: wp('8'),
-          borderBottomLeftRadius: wp('8'),
-          borderBottomRightRadius: wp('8'),
+          bottom: 0,
+          left: 0,
+          right: 0,
+          // borderTopLeftRadius: wp('8'),
+          // borderTopRightRadius: wp('8'),
+          // borderBottomLeftRadius: wp('8'),
+          // borderBottomRightRadius: wp('8'),
           backgroundColor: '#F5F5F5',
-          height: hp('10%'),
+          height: hp('8'),
           alignItems: 'center',
         },
       }}
       initialRouteName={navigationStrings.HOME}
       ScreenOption={{
         showLabel: false,
-      }}>
+      }}
+      
+      >
       <BototmTab.Screen
         name={navigationStrings.CATEGORYSTACK}
         component={CategoryStack}
@@ -238,6 +243,7 @@ export default function TabRoutes({props, navigation}) {
         //     navigation.navigate(Profile);
         //   },
         // })}
+        initialParams={{ onSignOut }}
         options={{
           tabBarActiveTintColor: '#009A00',
           tabBarLabel: '',

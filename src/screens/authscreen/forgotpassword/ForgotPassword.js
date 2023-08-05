@@ -74,9 +74,9 @@ const ForgotPassword = ({navigation}) => {
             txtStyle={{color: '#fff', fontWeight: 'bold'}}
             label="Next"
             onPress={() => {
-              if (isEmailValid === true) {
+              // if (isEmailValid === true) {
                 navigation.navigate('ChangePassword');
-              }
+              // }
             }}
           />
         </View>

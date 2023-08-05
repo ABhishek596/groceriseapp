@@ -14,7 +14,7 @@ export default {
     // primary: '#073882',
     primary: '#f27b2c',
     // process: '#007D43',
-    process:'#000000',
+    // process:'#000000',
     // error: '#FF0000',
     error: '#dd4527',
     inactive: '#535353',

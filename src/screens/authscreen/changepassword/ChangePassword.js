@@ -252,9 +252,9 @@ const ChangePassword = ({navigation}) => {
                 txtStyle={{color: '#fff', fontWeight: 'bold'}}
                 label="Next"
                 onPress={() => {
-                  if (values.password === values.confirmPassword) {
+                  // if (values.password === values.confirmPassword) {
                     setModalVisible(true);
-                  }
+                  // }
                 }}
               />
             </>

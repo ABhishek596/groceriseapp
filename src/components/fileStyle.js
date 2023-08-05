@@ -375,5 +375,22 @@ const styles = StyleSheet.create({
   underlineStyleHighLighted: {
     borderColor: "#03DAC6",
   },
+  profileitem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderTopWidth:1,
+    borderTopColor:colors.black+40,
+    width: wp('90'),
+    alignSelf:'center',
+    height:hp('10')
+  },
+  screens: {
+    // color: colors.black+200,
+    color:'#2E2E2E',
+    fontSize: wp('4.5'),
+    marginLeft:wp('4'),
+    fontFamily:'Poppins-SemiBold',
+    top:hp('0.2')
+  },
 });
 export default styles;

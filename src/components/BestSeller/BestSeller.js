@@ -12,7 +12,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import colors from '../colors';
+import Colors from '../../utils/Colors';
 import Icons from '../icons/Icons';
 
 const BestSeller = () => {
@@ -78,8 +78,8 @@ const BestSeller = () => {
               style={styles.heartstyle}
               onPress={() => handleLike(item.id)}>
               <Icons
-                iconType={'MaterialCommunityIcons'}
-                name={item.liked ? 'heart' : 'cards-heart-outline'}
+                iconType={'MaterialIcons'}
+                name={item.liked ? 'favorite' : 'favorite-border'}
                 size={wp('4%')}
                 color={item.liked ? 'red' : 'black'}
               />
@@ -102,12 +102,22 @@ const BestSeller = () => {
           <View style={styles.priceContainer}>
             <Text style={styles.priceText}>{item.price}</Text>
             <TouchableOpacity style={styles.iconStyle}>
-              <Icons
-                name={'camerao'}
-                iconType={'AntDesign'}
-                size={wp('4%')}
-                color={colors.white}
+            <Image
+                resizeMode="contain"
+                style={{
+                  height: hp('5'),
+                  width: wp('7'),
+                  alignSelf: 'center',
+                  tintColor: Colors.white,
+                }}
+                source={require('../../../assets/images/bags-shopping.png')}
               />
+              {/* <Icons
+                name={'shopping-bag'}
+                iconType={'Fontisto'}
+                size={wp('5%')}
+                color={Colors.black}
+              /> */}
             </TouchableOpacity>
           </View>
         </View>
@@ -167,14 +177,12 @@ const styles = StyleSheet.create({
   box: {
     width: wp('45%'),
     height: hp('32%'),
-    // padding: wp('0.1%'),
     borderRadius: wp('2%'),
     margin: wp('2.2%'),
-    // backgroundColor:'red',
   },
   inner: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#FDFDFD',
     borderRadius: wp('2%'),
     shadowColor: '#000',
     shadowOffset: {
@@ -208,12 +216,12 @@ const styles = StyleSheet.create({
     // backgroundColor:'red'
   },
   categoryContainer: {
-    marginTop: hp('1%'),
+    marginTop: hp('1.5%'),
     marginLeft: wp('1%'),
   },
   categoryText: {
     paddingHorizontal: wp('2.5%'),
-    backgroundColor: colors.gray,
+    backgroundColor: Colors.gray,
     borderRadius: wp('2%'),
     fontSize: wp('2.1%'),
     fontWeight: '500',
@@ -233,16 +241,24 @@ const styles = StyleSheet.create({
   weightText: {
     fontSize: wp('2.2%'),
     fontWeight: '700',
-    marginTop: hp('0.3%'),
+    marginTop: hp('0.5%'),
   },
   priceContainer: {
     flexDirection: 'row',
-    height: hp('3.5%'),
-    backgroundColor: '#FFFFFF',
-    marginTop: hp('2.3%'),
+    height: hp('4%'), // Use heightPercentageToDP for responsive height
+    marginTop: 'auto',
+    backgroundColor: Colors.white, // Background color for the price container
     borderBottomLeftRadius: wp('2%'),
     borderBottomRightRadius: wp('2%'),
     justifyContent: 'space-between',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: hp('0.2%'),
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: wp('1%'),
+    elevation: 5,
   },
   priceText: {
     fontSize: wp('2.5%'),
@@ -251,7 +267,7 @@ const styles = StyleSheet.create({
     marginHorizontal: wp('2%'),
   },
   iconStyle: {
-    backgroundColor: colors.themePrimary,
+    backgroundColor: Colors.themePrimary,
     height: hp('5%'),
     width: wp('10%'),
     alignItems: 'center',

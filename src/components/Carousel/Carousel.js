@@ -97,6 +97,7 @@ const Carousel = () => {
         horizontal
         pagingEnabled
         onScroll={handleScroll}
+        showsHorizontalScrollIndicator={false}
       />
       <View style={styles.dotContainer}>{renderDotIndicators()}</View>
     </View>

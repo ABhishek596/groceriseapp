@@ -12,6 +12,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Header from '../../components/Header/Header';
 //   import Header from '../common/Header';
 //   import {useNavigation, useRoute} from '@react-navigation/native';
 //   import {SimpleHeader} from '../../constant/file';
@@ -54,12 +55,14 @@ const ProductDetail = ({navigation, route}) => {
           onPress={() => navigation.goBack()}
           // style={{backgroundColor:'red'}}
         /> */}
-      <HeaderScreen
+      {/* <HeaderScreen
         iconTypeLeft={'AntDesign'}
         nameLeft={'arrowleft'}
         iconTypeRight={'AntDesign'}
         nameRight={'hearto'}
-      />
+      /> */}
+      <Header back headertext="ProductDetail" cart />
+
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.title}>{'India Gate Basmati'}</Text>
         <Text style={styles.desc}>staples</Text>

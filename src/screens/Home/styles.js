@@ -8,40 +8,81 @@ import {
 const homeStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.bgColor1,
+    backgroundColor: colors.white,
     paddingBottom: hp('10%'),
   },
-  titleBar: {
+  profileheader:{
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 10,
-    height: hp('10%'),
+    justifyContent:'flex-start',
+    height: hp('7%'),
   },
-  userImage: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
-    marginRight: 10,
+  headingtxt:{
+    fontSize:wp('5'),
+    fontFamily:'Poppins-SemiBold',
+    color:colors.black,
+    marginLeft:wp('2'),
+    top:hp('0.5')
+  },
+  titlemain: {
+    alignItems: 'center',
+    height: hp('7%'),
+    justifyContent:'center',
+    backgroundColor:'red'
+  },
+  usrname:{
+    fontSize:wp('4'),
+    fontFamily:'Poppins-SemiBold',
+    color:colors.black,
+    marginLeft:wp('16'),
+
+  },
+  email:{
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent:'space-between',
+    alignContent:'center'
+  },
+  pnumber:{
+    fontSize:wp('4'),
+    fontFamily:'Poppins-SemiBold',
+    color:colors.gray,
+    marginLeft:wp('16'),
+  },
+  tinyLogo: {
+    width: 50,
+    height: 50,
+    borderRadius:180/2
+  },
+  usrprofile: {
+   marginHorizontal:wp('5'),
+   marginVertical:hp('3')
   },
   userInfo: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },
-  userName: {
+  usremail: {
     color: colors.black,
+    fontSize: wp('4'),
+    marginLeft:wp('3'),
+  },
+  profileitem: {
     flexDirection: 'row',
-    fontWeight: 'bold',
-    marginRight: 5,
-    fontSize: 12,
+    alignItems: 'center',
+    borderTopWidth:1,
+    borderTopColor:colors.gray,
+    width: wp('90'),
+    alignSelf:'center',
+    height:hp('10')
   },
-  address: {
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-  },
-  addressText: {
+  screens: {
     color: colors.black,
-    marginLeft: 1,
+    fontSize: wp('4'),
+    marginLeft:wp('8'),
+    fontFamily:'Poppins-SemiBold',
+    top:hp('0.5')
   },
   buttonContainer: {
     padding: 5,

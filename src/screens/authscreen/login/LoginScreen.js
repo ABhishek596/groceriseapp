@@ -27,7 +27,12 @@ import {useTogglePasswordVisibility} from '../../../components/TogglePasswordVis
 import {Formik} from 'formik';
 import * as yup from 'yup';
 // create a component
-const LoginScreen = ({navigation}) => {
+const LoginScreen = ({route, navigation}) => {
+  // const { onSignIn } = route.params || {};
+
+  // console.log('onSignIn',onSignIn);
+
+
   const {passwordVisibility, rightIcon, handlePasswordVisibility} =
     useTogglePasswordVisibility();
   // const [password, setPassword] = useState('');
@@ -63,6 +68,12 @@ const LoginScreen = ({navigation}) => {
       .required('Password is required'),
   });
 
+  //Not
+  // const handleSignIn = () => {
+  //   // After successful sign-in, call onSignIn function to update isAuthenticated state in RootNavigator
+  //   onSignIn && onSignIn();
+  // };
+
   return (
     <SafeAreaView style={styles.container}>
       <SimpleHeader
@@ -91,12 +102,12 @@ const LoginScreen = ({navigation}) => {
               style={{
                 alignSelf: 'center',
                 color: '#000000',
-                fontSize: wp('5'),
-                top: hp('2'),
+                fontSize: wp('5.5'),
+                top: hp('3'),
                 fontFamily: 'Poppins-MediumItalic',
                 // marginRight: wp('3'),
               }}>
-              to SafestWay Driver
+              to SafestWay
             </Text>
             {/* <Image
            source={require('../../../../assets/images/pgg.png')}
@@ -287,11 +298,17 @@ const LoginScreen = ({navigation}) => {
                     }}
                     txtStyle={{color: '#fff', fontWeight: 'bold'}}
                     label="Sign In"
+                    // onPress={() => {
+                    //   if (values.password !== '' && !errors.password) {
+                    //     navigation.navigate('TabRoutes');
+                    //   }
+                    // }}{handleSignIn}
                     onPress={() => {
-                      if (values.password !== '' && !errors.password) {
-                        navigation.navigate('TabRoutes');
-                      }
+                      // onSignIn
+                      navigation.navigate('PhoneNumber');
+                      // navigation.navigate('TabRoutes', {screen: 'HomeStack'});
                     }}
+                    // onPress={handleSignIn}
                   />
                 </>
               )}
@@ -308,7 +325,8 @@ const LoginScreen = ({navigation}) => {
                     bottom: hp('0.5'),
                     //paddingBottom: hp('10'),
                   }}
-                  onPress={() => navigation.navigate('Notification')}>
+                  // onPress={() => navigation.navigate('Notification')}
+                >
                   Have No Account?
                 </Text>
               </View>
@@ -352,7 +370,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     // position: 'absolute',
     // bottom: 50,
-    marginTop: hp('5'),
+    marginTop: hp('6'),
   },
   signinicon: {
     flexDirection: 'row',

@@ -7,7 +7,6 @@ import {
   StyleSheet,
   ScrollView,
   SafeAreaView,
-  ImageBackground,
   TextInput,
   Pressable,
   TouchableOpacity,
@@ -17,12 +16,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {
-  SubmitBtn1,
-  FormInputField,
-  FormMaxInputField,
-} from '../../../components/file';
-import TextInputLabel from '../../../components/textInputLabel';
+import {SubmitBtn1} from '../../../components/file';
 import Icons from '../../../components/icons/Icons';
 import {SimpleHeader} from '../../../components/file';
 import {useTogglePasswordVisibility} from '../../../components/TogglePasswordVisibility/useTogglePasswordVisibility';
@@ -30,6 +24,9 @@ import {useTogglePasswordVisibilityyy} from '../../../components/TogglePasswordV
 import {Formik} from 'formik';
 import * as yup from 'yup';
 import PhoneInput from 'react-native-phone-number-input';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import colors from '../../../components/colors';
+import moment from 'moment';
 // create a component
 
 const SignUpScreen = ({navigation}) => {
@@ -39,11 +36,17 @@ const SignUpScreen = ({navigation}) => {
   const {passwordVisibility1, rightIcon1, handlePasswordVisibility1} =
     useTogglePasswordVisibilityyy();
 
-  const [password, setPassword] = useState('');
-  const [password1, setPassword1] = useState('');
+  // const [password, setPassword] = useState('');
+  // const [password1, setPassword1] = useState('');
   const [loginerr, setLoginerr] = useState('');
   const [isEmailValid, setIsEmailValid] = useState(false);
 
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+  const [date, setDate] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [show, setshow] = useState(false);
+  console.log(date);
   const validateEmail = email => {
     // Regular expression to validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -88,22 +91,39 @@ const SignUpScreen = ({navigation}) => {
       )
       .min(8, ({min}) => `Password must be at least ${min} characters`)
       .oneOf([yup.ref('password')], 'Passwords do not match')
-      .required('Confirm password is required'),  
+      .required('Confirm password is required'),
   });
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = date => {
+    console.log('A date has been picked: ', date);
+    hideDatePicker();
+    setDate(date);
+    setshow(true);
+    setOpen(false);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
-      <View
-        // colors={['#f8fff2', '#eaffe1','#e8fadf', '#f7fbdb']}
-        style={styles.linearGradient}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        // behavior="padding"
+        style={{flex: 1, backgroundColor: colors.white}}>
         <SimpleHeader
           size={18}
           onPress={() => {
             navigation.goBack();
           }}
         />
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <KeyboardAvoidingView>
+        <View style={{flex: 1, backgroundColor: colors.white}}>
+          <ScrollView showsVerticalScrollIndicator={false}>
             <Text style={styles.toptxt}>Create New Account</Text>
             <Text style={styles.toptxt2}>
               Enter Your details to create account
@@ -253,6 +273,64 @@ const SignUpScreen = ({navigation}) => {
                     <Text style={styles.errorText}>{errors.name}</Text>
                   )}
 
+                  <View
+                    style={{
+                      marginTop: hp('2.5%'),
+                      alignItems: 'center',
+                      flexDirection: 'row',
+                      // borderRadius: 10,
+                      alignSelf: 'center',
+                      backgroundColor: '#fff',
+                      // height: 55,
+                      width: wp('90%'),
+                      justifyContent: 'space-between',
+                    }}>
+                    <View>
+                      <Text style={{fontSize: wp('4'), marginLeft: wp('4%')}}>
+                        Date Of Birth
+                      </Text>
+                      <Text style={{fontSize: wp('3'), alignSelf: 'center'}}>
+                        (Optional)
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        // marginTop: hp('2.5%'),
+                        alignItems: 'center',
+                        // flexDirection: 'row',
+                        borderRadius: 10,
+                        // alignSelf: 'center',
+                        backgroundColor: '#FAFAFA',
+                        height: 55,
+                        width: wp('50%'),
+                        justifyContent: 'center',
+                      }}>
+                      <TouchableOpacity onPress={showDatePicker}>
+                        <Text
+                          style={{
+                            fontWeight: 'normal',
+                            fontSize: wp('4'),
+                            // marginRight: 12,
+                            // width: wp('70%'),
+                            marginLeft: wp('3'),
+                            color: date ? 'black' : 'gray',
+                            // backgroundColor:'red'
+                          }}>
+                          {show
+                            ? `${moment(date).format('MM/DD/YYYY')}     ${date
+                                .toTimeString()
+                                .substring(0, 0)}`
+                            : 'MM/DD/YYYY'}
+                        </Text>
+                      </TouchableOpacity>
+                      <DateTimePickerModal
+                        isVisible={isDatePickerVisible}
+                        mode="date"
+                        onConfirm={handleConfirm}
+                        onCancel={hideDatePicker}
+                      />
+                    </View>
+                  </View>
                   <View style={styles.toptphoneInput}>
                     <PhoneInput
                       ref={phoneInput}
@@ -268,7 +346,7 @@ const SignUpScreen = ({navigation}) => {
                       withDarkTheme
                       withShadow={false}
                       containerStyle={{
-                        height: hp('8'),
+                        height: 55,
                         borderRadius: 10,
                         backgroundColor: '#FAFAFA',
                       }}
@@ -384,7 +462,9 @@ const SignUpScreen = ({navigation}) => {
                     </Pressable>
                   </View>
                   {errors.confirm_password && touched.confirm_password && (
-                    <Text style={styles.errorText}>{errors.confirm_password}</Text>
+                    <Text style={styles.errorText}>
+                      {errors.confirm_password}
+                    </Text>
                   )}
                   {/* {loginerr && (
                     <Text style={styles.errorlogintxt}>{loginerr}</Text>
@@ -411,9 +491,9 @@ const SignUpScreen = ({navigation}) => {
                     txtStyle={{color: '#fff', fontWeight: 'bold'}}
                     label="Sign Up"
                     onPress={() => {
-                      if (values.password !== '' && !errors.password) {
+                      // if (values.password !== '' && !errors.password) {
                         navigation.navigate('LoginScreen');
-                      }
+                      // }
                     }}
                   />
                 </>
@@ -449,9 +529,9 @@ const SignUpScreen = ({navigation}) => {
                 />
               </View>
             </View>
-          </KeyboardAvoidingView>
-        </ScrollView>
-      </View>
+          </ScrollView>
+        </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -473,7 +553,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: hp('11'),
+    marginTop: hp('5'),
   },
   signinicon: {
     flexDirection: 'row',

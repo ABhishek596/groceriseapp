@@ -1,19 +1,26 @@
 // import {createStore} from 'redux';
 // import { Reducers } from '../reducer/Reducers';
 
-// export const store = createStore(Reducers)
+//  const store = createStore(Reducers);
 
-const {configureStore} = require('@reduxjs/toolkit');
+//  export default store;
+// store.js
 
-import ProductReduer from '../slices/ProductsSlice';
-import WishlistReducer from '../slices/WishlistSlice';
-import CartReducer from '../slices/CartSlice';
-import AddressReducer from '../slices/AddressSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import ProductsReducer from "../slices/ProductsSlice";
+import WishlistReducer from "../slices/WishlistSlice";
+import CartReducer from "../slices/CartSlice";
+import AddressReducer from "../slices/AddressSlice";
+
 export const store = configureStore({
   reducer: {
-    product: ProductReduer,
+    products: ProductsReducer,
     wishlist: WishlistReducer,
     cart: CartReducer,
     address: AddressReducer,
   },
 });
+
+
+export default store;
+

@@ -5,12 +5,17 @@ import navigationStrings from '../constants/navigationStrings';
 
 const Stack = createNativeStackNavigator();
 
-export default function ProfileStack() {
+export default function ProfileStack({route}) {
+  const {onSignOut} = route.params || {};
   return (
     <Stack.Navigator
       initialRouteName={navigationStrings.PROFILE}
       screenOptions={{headerShown: false}}>
-      <Stack.Screen name={navigationStrings.PROFILE} component={Profile} />
+      <Stack.Screen
+        name={navigationStrings.PROFILE}
+        component={Profile}
+        initialParams={{onSignOut}}
+      />
       {/* <Stack.Screen
         name={navigationStrings.DELIVERYASSIGNED}
         component={Deliveryassigned}

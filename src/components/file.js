@@ -523,6 +523,7 @@ export const HeaderScreen = ({
   nameLeft,
   iconTypeRight,
   nameRight,
+  onPress
 }) => {
   return (
     <View style={styles.header}>
@@ -532,6 +533,7 @@ export const HeaderScreen = ({
           name={nameLeft}
           size={15}
           color={'#000000'}
+          onPress={onPress}
         />
       </View>
       <View style={styles.round}>
@@ -698,5 +700,23 @@ export const TxtInput = ({
         />
       </KeyboardAvoidingView>
     </View>
+  );
+};
+
+export const Profileitem = ({iconType, title, name, size}) => {
+  return (
+    <View style={styles.profileitem}>
+      <View style={{width:wp('9')}}>
+    <Icons
+      name={name}
+      iconType={iconType}
+      size={size || 22}
+      style={{marginLeft: wp('1')}}
+      color={colors.black+100}
+      //  onPress={onPress}
+    />
+    </View>
+    <Text style={styles.screens}>{title}</Text>
+  </View>
   );
 };

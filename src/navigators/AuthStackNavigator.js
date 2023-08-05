@@ -7,9 +7,12 @@ import {StyleSheet} from 'react-native';
 import SignUpScreen from '../screens/authscreen/signup/SignUpScreen';
 import ForgotPassword from '../screens/authscreen/forgotpassword/ForgotPassword';
 import ChangePassword from '../screens/authscreen/changepassword/ChangePassword';
+import WelcomeScreen from '../screens/welcomescreen/WelcomeScreen';
+import OnboardingScreen from '../screens/onboardingscreen/OnboardingScreen';
 const AuthStack = createNativeStackNavigator();
 
-const AuthStackNavigator = () => {
+const AuthStackNavigator = ({ route }) => {
+  const { onSignIn } = route.params || {};
   return (
     <AuthStack.Navigator
       screenOptions={{
@@ -19,11 +22,22 @@ const AuthStackNavigator = () => {
         headerShown: false,
         animation: 'none',
       }}
-      initialRouteName="LoginScreen">
+      initialRouteName="OnboardingScreen">
+      <AuthStack.Screen
+        options={{headerShown: false}}
+        name="OnboardingScreen"
+        component={OnboardingScreen}
+      />
+      <AuthStack.Screen
+        options={{headerShown: false}}
+        name="WelcomeScreen"
+        component={WelcomeScreen}
+      />
       <AuthStack.Screen
         options={{headerShown: false}}
         name="LoginScreen"
         component={LoginScreen}
+        initialParams={{ onSignIn }}
       />
       <AuthStack.Screen
         options={{headerShown: false}}
@@ -34,6 +48,7 @@ const AuthStackNavigator = () => {
         options={{headerShown: false}}
         name="OtpVerification"
         component={OtpVerification}
+        initialParams={{ onSignIn }}
       />
       <AuthStack.Screen
         options={{headerShown: false}}

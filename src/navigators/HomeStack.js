@@ -2,7 +2,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import Home from '../screens/Home/Home';
 import navigationStrings from '../constants/navigationStrings';
-
+import Produts from '../screens/Products/Produts';
 const Stack = createNativeStackNavigator();
 
 export default function HomeStack() {
@@ -11,6 +11,8 @@ export default function HomeStack() {
       initialRouteName={navigationStrings.HOME}
       screenOptions={{headerShown: false}}>
       <Stack.Screen name={navigationStrings.HOME} component={Home} />
+      <Stack.Screen name={"Produts"} component={Produts} />
+
       {/* <Stack.Screen
         name={navigationStrings.DELIVERYASSIGNED}
         component={Deliveryassigned}

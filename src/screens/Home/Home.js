@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, Image, ScrollView} from 'react-native';
+import {View, Text, Image, ScrollView, TouchableOpacity} from 'react-native';
 import Icons from '../../components/icons/Icons';
 import styles from './styles';
 import colors from '../../components/colors';
@@ -11,42 +11,29 @@ import BestSeller from '../../components/BestSeller/BestSeller';
 import Offers from '../../components/Offers/Offers';
 import Freshpickup from '../../components/Freshpickup/Freshpickup';
 import GrabGone from '../../components/GrabGone/GrabGone';
+import HomeHeader from '../../components/HomeHeader/HomeHeader';
+import navigationStrings from '../../constants/navigationStrings';
 
 const Home = ({navigation}) => {
+  const moveToScreen = (Navigator, Screen) => () => {
+    navigation.navigate(Navigator, {screen: Screen});
+  };
   return (
     <View style={styles.container}>
-      <View style={styles.titleBar}>
-        <Image
-          style={styles.userImage}
-          source={require('../../../assets/images/girl.png')}
-        />
-        <View style={styles.userInfo}>
-          <View style={styles.address}>
-            <Text style={styles.userName}>Lucy Martin</Text>
-            <View style={{flexDirection: 'row', alignItems: 'flex-start'}}>
-              <Icons
-                name="location-pin"
-                iconType="Entypo"
-                size={15}
-                color={colors.themePrimary}
-              />
-              <Text style={styles.addressText}>Mithakhali, Navrangpura</Text>
-            </View>
-          </View>
-        </View>
-        <View style={styles.buttonContainer}>
-          <Icons
-            name="camerao"
-            iconType="AntDesign"
-            size={15}
-            color={colors.black}
-          />
-        </View>
-      </View>
+      <HomeHeader
+        userName={'Lucy Martin'}
+        address={'Mithakhali, Navrangpura'}
+        cart
+      />
       <View style={styles.searchBarContainer}>
-        <View style={{width: '80%', flexDirection: 'row', alignSelf: 'center'}}>
+        <TouchableOpacity
+          onPress={moveToScreen(
+            navigationStrings.STACK,
+            navigationStrings.SEARCH,
+          )}
+          style={{width: '80%', flexDirection: 'row', alignSelf: 'center'}}>
           <SearchBar />
-        </View>
+        </TouchableOpacity>
         <View style={styles.filterButton}>
           <Image
             style={styles.filterIcon}
@@ -90,6 +77,7 @@ const Home = ({navigation}) => {
           <Text style={styles.itemview}>Grab OR Gone</Text>
           <Text style={styles.viewAll}>view All</Text>
         </View>
+        <GrabGone />
         <GrabGone />
       </ScrollView>
     </View>

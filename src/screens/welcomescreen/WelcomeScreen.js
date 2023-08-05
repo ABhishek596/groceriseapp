@@ -23,13 +23,13 @@ const WelcomeScreen = ({navigation}) => {
             style={{
               alignSelf: 'center',
               color: '#000000',
-              fontSize: wp('8'),
+              fontSize: wp('12'),
               // top: hp('5'),
-              fontFamily: 'RussoOne-Regular',
-              marginTop: hp('12'),
+              fontFamily: 'Poppins-MediumItalic',
+              marginTop: hp('13'),
               // marginRight: wp('3'),
             }}>
-            SafestWay Driver
+            SafestWay
           </Text>
           <View
             style={{marginTop: hp('15'), width: wp('90'), alignSelf: 'center'}}>
@@ -37,7 +37,7 @@ const WelcomeScreen = ({navigation}) => {
               label={'Login'}
               style={{backgroundColor: '#222222'}}
               onPress={() => {
-                navigation.navigate('AuthStackNavigator');
+                navigation.navigate('LoginScreen');
               }}
             />
           </View>
@@ -62,7 +62,7 @@ const WelcomeScreen = ({navigation}) => {
             borderBottomWidth: 4,
             borderBottomColor: '#000000' + 50,
             position: 'absolute',
-            bottom: hp('1'),
+            bottom: hp('2'),
           }}
         />
       </View>
